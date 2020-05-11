@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c85c11ae-c7ef-4184-8da1-9e0666ffbea2" name="Default Changelist" comment="" />
+    <list default="true" id="c85c11ae-c7ef-4184-8da1-9e0666ffbea2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +17,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1blDEqmjS9KwkczfeKT8BBFwpJu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,7 +29,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="Graph" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -64,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589197677513</updated>
       <workItem from="1589197702493" duration="1523000" />
+      <workItem from="1589210915714" duration="393000" />
     </task>
     <servers />
   </component>
@@ -71,6 +82,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="919" y="177" key="FileChooserDialogImpl" timestamp="1589211299445">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="919" y="177" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1589211299445" />
     <state width="1493" height="214" key="GridCell.Tab.0.bottom" timestamp="1589199234495">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -87,6 +102,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="1493" height="214" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1589199234495" />
+    <state x="277" y="59" key="SettingsEditor" timestamp="1589211306419">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="277" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1589211306419" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1589210914800">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1589210914800" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BarBar$Graph.coverage" NAME="Graph Coverage Results" MODIFIED="1589199133763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
