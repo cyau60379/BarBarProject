@@ -13,8 +13,11 @@ class Graph:
         return self.nb_edges
 
     def add_node(self, node):
-        self.representation[node] = []
         self.dist[node] = {node: 999}
+        for other_node in self.node_list():
+            self.dist[other_node][node] = 999
+            self.dist[node][other_node] = 999
+        self.representation[node] = []
         self.nb_nodes += 1
 
     def add_edge(self, node1, node2, weight=0):
