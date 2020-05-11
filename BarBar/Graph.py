@@ -2,6 +2,7 @@ class Graph:
 
     def __init__(self):
         self.representation = {}
+        self.dist = {}
         self.nb_nodes = 0
         self.nb_edges = 0
 
@@ -13,11 +14,13 @@ class Graph:
 
     def add_node(self, node):
         self.representation[node] = []
+        self.dist[node] = {node: 999}
         self.nb_nodes += 1
 
     def add_edge(self, node1, node2, weight=0):
         self.representation[node1].append((node1, node2, weight))
         self.nb_edges += 1
+        self.dist[node1][node2] = weight
 
     def node_list(self):
         nodes = []
@@ -47,6 +50,16 @@ class Graph:
 
     def out_degree(self, node):
         return len(self.get_out_neighbors(node))
+
+    def edge_list(self):
+        edges = []
+        for key in self.representation:
+            for edge in self.representation[key]:
+                edges.append(edge)
+        return edges
+
+    def get_dist_matrix(self):
+        return self.dist
 
     def __str__(self):
         return str(self.representation)
