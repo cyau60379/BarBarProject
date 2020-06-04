@@ -13,17 +13,28 @@ class Graph:
         return self.nb_edges
 
     def add_node(self, node):
-        self.dist[node] = {node: 999}
-        for other_node in self.node_list():
-            self.dist[other_node][node] = 999
-            self.dist[node][other_node] = 999
-        self.representation[node] = []
-        self.nb_nodes += 1
+        if node not in self.representation:
+            self.dist[node] = {node: 999}
+            for other_node in self.node_list():
+                self.dist[other_node][node] = 999
+                self.dist[node][other_node] = 999
+            self.representation[node] = []
+            self.nb_nodes += 1
+        else:
+            pass
 
-    def add_edge(self, node1, node2, weight=0):
-        self.representation[node1].append((node1, node2, weight))
-        self.nb_edges += 1
-        self.dist[node1][node2] = weight
+    def add_edge(self, node1, node2, weight=999):
+        can_add = True
+        for tup in self.representation[node1]:
+            if {node1, node2}.issubset(tup):
+                can_add = False
+                break
+        if can_add:
+            self.representation[node1].append((node1, node2, weight))
+            self.nb_edges += 1
+            self.dist[node1][node2] = weight
+        else:
+            pass
 
     def node_list(self):
         nodes = []
@@ -32,21 +43,27 @@ class Graph:
         return nodes
 
     def get_in_neighbors(self, node):
-        neighbors = []
-        for key in self.representation:
-            if key == node:
-                continue
-            for edge in self.representation[key]:
-                if node in edge:
-                    neighbors.append(key)
-                    break
-        return neighbors
+        if node not in self.representation:
+            raise IndexError
+        else:
+            neighbors = []
+            for key in self.representation:
+                if key == node:
+                    continue
+                for edge in self.representation[key]:
+                    if node in edge:
+                        neighbors.append(key)
+                        break
+            return neighbors
 
     def get_out_neighbors(self, node):
-        neighbors = []
-        for edge in self.representation[node]:
-            neighbors.append(edge[1])
-        return neighbors
+        if node not in self.representation:
+            raise IndexError
+        else:
+            neighbors = []
+            for edge in self.representation[node]:
+                neighbors.append(edge[1])
+            return neighbors
 
     def in_degree(self, node):
         return len(self.get_in_neighbors(node))
@@ -68,6 +85,7 @@ class Graph:
         return str(self.representation)
 
 
+"""
 if __name__ == '__main__':
 
     graph = Graph()
@@ -85,4 +103,4 @@ if __name__ == '__main__':
     print("Out neighbors 0: ", graph.get_out_neighbors(0))
     print("Out neighbors 0: ", graph.out_degree(0))
     print("vertices: ", graph.node_list())
-
+"""
