@@ -1,4 +1,5 @@
 import itertools
+from multiprocessing import Pool, Manager
 from Graph import Graph
 
 
@@ -56,7 +57,10 @@ def rec_held_karp(s, current, dist, path, start):
         if not current_list:
             return 999, []
         if current == start:
-            return min(map(lambda tup: add_start_dist(current, dist, tup), current_list))
+            try:
+                return min(map(lambda tup: add_start_dist(current, dist, tup), current_list))
+            except IndexError:
+                return 999, []
         else:
             return min(current_list)
 
@@ -98,20 +102,53 @@ def dynamic_held_karp(g, start):
     node_set = tuple(nodes)
     path_dict = {}
     for node in nodes:
-        path_dict[((node,), node)] = (dist_matrix[start][node], [start, node])
+        path_dict[((node,), node)] = (dist_matrix[node][start], [node, start])
 
     for s in range(2, len(nodes) + 1):
         subsets = find_subsets(node_set, s)
         for subset in subsets:
-            for node in subset:
-                new_sub = set(subset)
-                new_sub.remove(node)
-                new_subset = tuple(new_sub)
-                path_dict[(subset, node)] = min(
-                    [(path_dict[(new_subset, m)][0] + dist_matrix[m][node],
-                      path_dict[(new_subset, m)][1] + [node]) for m in new_subset])
+            path_dict_filler(dist_matrix, path_dict, subset)
 
-    distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[m][start],
-                           path_dict[(node_set, m)][1] + [start]) for m in node_set])
+    distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[start][m],
+                           [start] + path_dict[(node_set, m)][1]) for m in node_set])
 
     return distance, path
+
+
+def parallel_held_karp(g, start, processors=3):
+    """
+    Parallel Held-Karp algorithm for the Traveller Salesman Problem
+    :param processors:
+    :param Graph g: a graph
+    :param start: the start node
+    :return: the distance and the path to go to each node one time and return to start node
+    """
+    dist_matrix = g.get_dist_matrix()
+    nodes = g.node_list()
+    nodes.remove(start)
+    node_set = tuple(nodes)
+    manager = Manager()
+    path_dict = manager.dict()
+
+    for node in nodes:
+        path_dict[((node,), node)] = (dist_matrix[node][start], [node, start])
+
+    for s in range(2, len(nodes) + 1):
+        subsets = find_subsets(node_set, s)
+        pool = Pool(processors)
+        [pool.apply(path_dict_filler, args=(dist_matrix, path_dict, subset)) for subset in subsets]
+
+    distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[start][m],
+                           [start] + path_dict[(node_set, m)][1]) for m in node_set])
+
+    return distance, path
+
+
+def path_dict_filler(dist_matrix, path_dict, subset):
+    for node in subset:
+        new_sub = set(subset)
+        new_sub.remove(node)
+        new_subset = tuple(new_sub)
+        path_dict[(subset, node)] = min(
+            [(path_dict[(new_subset, m)][0] + dist_matrix[node][m],
+              [node] + path_dict[(new_subset, m)][1]) for m in new_subset])
