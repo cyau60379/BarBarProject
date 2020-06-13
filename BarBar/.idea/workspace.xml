@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c85c11ae-c7ef-4184-8da1-9e0666ffbea2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/Graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/tests/GraphTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HKTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/tests/HKTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/darkBarBar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/darkBarBar.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/held_karp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/held_karp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lightBarBar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/lightBarBar.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preferences.json5" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/preferences.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphStructure/TSP_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/TSP_initializer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +182,7 @@
       <workItem from="1591446314086" duration="3076000" />
       <workItem from="1591986333230" duration="11187000" />
       <workItem from="1592037982914" duration="21546000" />
-      <workItem from="1592065298552" duration="1995000" />
+      <workItem from="1592065298552" duration="2797000" />
     </task>
     <servers />
   </component>

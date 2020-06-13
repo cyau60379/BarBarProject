@@ -1,6 +1,8 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import json
+
+from GraphStructure.TSP_initializer import tsp_executor
 from algorithms.held_karp import *
 
 algorithms = {"REC_HELD_KARP": held_karp, "DYN_HELD_KARP": dynamic_held_karp, "PARA_HELD_KARP": parallel_held_karp}
@@ -114,9 +116,13 @@ class BarBarGUI(Tk):
 
         self.config(menu=menubar)
 
-    def action(self, error_label, city_map):
+    def action(self, error_label, city_map, position_entry, nb_bar_entry, price_entry):
         try:
-            self.var.get()
+            algorithm = algorithms[self.var.get()]
+            address = position_entry.get()
+            bar_number = nb_bar_entry.get()
+            price = price_entry.get()
+            coords = tsp_executor(algorithm, address, bar_number, price)
             self.trace_graph(city_map)
         except:
             self.error(error_label)
@@ -169,7 +175,7 @@ class BarBarGUI(Tk):
         error_label = ChoiceLabel(control_panel, "", self.font_color, self.color)
 
         validate_choice = GlobalButton(control_panel, self.font_color, self.color, text="NEXT",
-                                       command=lambda: self.action(error_label, city_map))
+                                       command=lambda: self.action(error_label, city_map, position_entry, nb_bar_entry, price_entry))
 
         validate_choice.pack(padx=10, pady=10)
         error_label.pack(padx=10, pady=10)
