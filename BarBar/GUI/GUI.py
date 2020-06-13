@@ -9,13 +9,13 @@ algorithms = {"REC_HELD_KARP": held_karp, "DYN_HELD_KARP": dynamic_held_karp, "P
 
 
 def load_preferences():
-    with open('preferences.json5') as json_data:
+    with open('GUI/preferences.json5') as json_data:
         preferences = json.load(json_data)
         return preferences
 
 
 def save_preferences(preferences):
-    with open('preferences.json5', 'w') as json_data:
+    with open('GUI/preferences.json5', 'w') as json_data:
         json.dump(preferences, json_data)
 
 
@@ -189,7 +189,7 @@ class BarBarGUI(Tk):
         self.add_menubar()
         self.active_page = self.start_page
         zoom = 0.3
-        load = Image.open(self.pref['preferences'] + "BarBar.jpg")
+        load = Image.open("GUI/" + self.pref['preferences'] + "BarBar.jpg")
         pixels_x, pixels_y = tuple([int(zoom * x) for x in load.size])
         image = load.resize((pixels_x, pixels_y), Image.ANTIALIAS)
         render = ImageTk.PhotoImage(image)
