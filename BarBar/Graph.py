@@ -24,12 +24,7 @@ class Graph:
             pass
 
     def add_edge(self, node1, node2, weight=999):
-        can_add = True
-        for tup in self.representation[node1]:
-            if {node1, node2}.issubset(tup):
-                can_add = False
-                break
-        if can_add:
+        if not self.is_existing_edge(node1, node2):
             self.representation[node1].append((node1, node2, weight))
             self.nb_edges += 1
             self.dist[node1][node2] = weight
@@ -80,6 +75,14 @@ class Graph:
 
     def get_dist_matrix(self):
         return self.dist
+
+    def is_existing_edge(self, node1, node2):
+        exists = False
+        for tup in self.representation[node1]:
+            if tup[1] == node2:
+                exists = True
+                break
+        return exists
 
     def __str__(self):
         return str(self.representation)

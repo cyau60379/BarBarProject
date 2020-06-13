@@ -1,9 +1,10 @@
+import itertools
 from Graph import Graph
 
 
 def held_karp(g, start):
     """
-    Held-Karp algorithm for the Traveller Salesman Problem
+    Recursive Held-Karp algorithm for the Traveller Salesman Problem
     :param Graph g: a graph
     :param start: the start node
     :return: the distance and the path to go to each node one time and return to start node
@@ -61,7 +62,56 @@ def rec_held_karp(s, current, dist, path, start):
 
 
 def add_start_dist(start, dist, tup):
+    """
+    Add the start node at the end of the path and calculate the distance of the full path
+    :param start: the start node of the circuit
+    :param dist: the distance matrix
+    :param tup: the current tuple containing the distance and the path
+    :return: the new distance with the full path
+    """
     new_dist = tup[0] + dist[tup[1][-1]][start]
     final_path = tup[1]
     final_path.append(start)
     return new_dist, final_path
+
+
+def find_subsets(s, m):
+    """
+    Function which find all possible subsets from a set (not all the permutations)
+    :param tuple s: set to be tested
+    :param int m: subsets length
+    :return: a list containing sets of combinations
+    """
+    return list(itertools.combinations(s, m))
+
+
+def dynamic_held_karp(g, start):
+    """
+    Dynamic Held-Karp algorithm for the Traveller Salesman Problem
+    :param Graph g: a graph
+    :param start: the start node
+    :return: the distance and the path to go to each node one time and return to start node
+    """
+    dist_matrix = g.get_dist_matrix()
+    nodes = g.node_list()
+    nodes.remove(start)
+    node_set = tuple(nodes)
+    path_dict = {}
+    for node in nodes:
+        path_dict[((node,), node)] = (dist_matrix[start][node], [start, node])
+
+    for s in range(2, len(nodes) + 1):
+        subsets = find_subsets(node_set, s)
+        for subset in subsets:
+            for node in subset:
+                new_sub = set(subset)
+                new_sub.remove(node)
+                new_subset = tuple(new_sub)
+                path_dict[(subset, node)] = min(
+                    [(path_dict[(new_subset, m)][0] + dist_matrix[m][node],
+                      path_dict[(new_subset, m)][1] + [node]) for m in new_subset])
+
+    distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[m][start],
+                           path_dict[(node_set, m)][1] + [start]) for m in node_set])
+
+    return distance, path
