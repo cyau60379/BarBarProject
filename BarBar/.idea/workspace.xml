@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c85c11ae-c7ef-4184-8da1-9e0666ffbea2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphStructure/Graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/Graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphStructure/TSP_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/TSP_initializer.py" afterDir="false" />
-    </list>
+    <list default="true" id="c85c11ae-c7ef-4184-8da1-9e0666ffbea2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -183,7 +178,7 @@
       <workItem from="1592122809613" duration="13310000" />
       <workItem from="1592224522378" duration="9354000" />
       <workItem from="1592235284876" duration="3157000" />
-      <workItem from="1592238635606" duration="5468000" />
+      <workItem from="1592238635606" duration="5822000" />
     </task>
     <servers />
   </component>
