@@ -136,7 +136,7 @@ class BarBarGUI(Tk):
             result.insert(END, result_text)
             result.configure(state=DISABLED)
             self.trace_graph(city_map, coords)
-        except:
+        except IndexError:
             self.error(error_label)
             # TODO: Remove the following line
             self.trace_graph(city_map, [(2.338028, 48.861147), (2.35005, 48.852937)])

@@ -4,17 +4,8 @@
     <list default="true" id="c85c11ae-c7ef-4184-8da1-9e0666ffbea2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/darkBarBar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/resources/darkBarBar.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/dark_city_map.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/dark_city_map.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/lightBarBar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/resources/lightBarBar.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/light_city_map.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/light_city_map.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/preferences.json5" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/resources/preferences.json5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GraphStructure/Graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/Graph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GraphStructure/TSP_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/TSP_initializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/held_karp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/held_karp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/tests/HKTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/tests/HKTests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +25,9 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="BarBar" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -188,7 +182,8 @@
       <workItem from="1592065298552" duration="4474000" />
       <workItem from="1592122809613" duration="13310000" />
       <workItem from="1592224522378" duration="9354000" />
-      <workItem from="1592235284876" duration="2347000" />
+      <workItem from="1592235284876" duration="3157000" />
+      <workItem from="1592238635606" duration="5468000" />
     </task>
     <servers />
   </component>
@@ -204,38 +199,38 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="919" y="177" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1589275413248" />
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1592235147837">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1592244050390">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592235147837" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1592235147837">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592244050390" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1592244050390">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1592235147837" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1592235147837">
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1592244050390" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1592244050390">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1592235147837" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1592235147837">
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1592244050390" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1592244050390">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1592235147837" />
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1592171977796">
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1592244050390" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1592242145509">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592171977796" />
-    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1592171977796">
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592242145509" />
+    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1592242145509">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1592171977796" />
-    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1592171977796">
+    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1592242145509" />
+    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1592242145509">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1592171977796" />
-    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1592171977796">
+    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1592242145509" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1592242145509">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1592171977796" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1592242145509" />
     <state x="277" y="59" key="SettingsEditor" timestamp="1592059602635">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -248,14 +243,25 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="775" height="424" key="XDebugger.FullValuePopup/0.0.1536.834@0.0.1536.834" timestamp="1592139584940" />
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1592235285894">
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1592238636102">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1592235285894" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1592238636102" />
     <state x="510" y="60" key="refactoring.ChangeSignatureDialog" timestamp="1592143326403">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="510" y="60" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1592143326403" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/algorithms/held_karp.py</url>
+          <line>108</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BarBar$yinyang.coverage" NAME="yinyang Coverage Results" MODIFIED="1591114778328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/turtledemo" />
@@ -263,7 +269,7 @@
     <SUITE FILE_PATH="coverage/BarBar$Unittests_for_HKTests_HeldKarpTests_test_parallel_held_karp.coverage" NAME="Unittests for HKTests.HeldKarpTests.test_parallel_held_karp Coverage Results" MODIFIED="1592148919282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms/tests" />
     <SUITE FILE_PATH="coverage/BarBar$Graph.coverage" NAME="Graph Coverage Results" MODIFIED="1591300918010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BarBar$essai.coverage" NAME="essai Coverage Results" MODIFIED="1592052641661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BarBar$GUI__1_.coverage" NAME="GUI (1) Coverage Results" MODIFIED="1592233555832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GUI" />
+    <SUITE FILE_PATH="coverage/BarBar$GUI__1_.coverage" NAME="GUI (1) Coverage Results" MODIFIED="1592244050370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GUI" />
     <SUITE FILE_PATH="coverage/BarBar$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1592069627144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BarBar$dnd.coverage" NAME="dnd Coverage Results" MODIFIED="1591114551902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/tkinter" />
     <SUITE FILE_PATH="coverage/BarBar$Unittests_for_HKTests_HeldKarpTests_test_dynamic_held_karp.coverage" NAME="Unittests for HKTests.HeldKarpTests.test_dynamic_held_karp Coverage Results" MODIFIED="1592148913993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms/tests" />

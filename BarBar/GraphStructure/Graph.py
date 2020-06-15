@@ -1,5 +1,6 @@
-import jsonParser as parser
+import jsonParsing.jsonParser as parser
 from math import sqrt
+
 
 class Graph:
 
@@ -26,7 +27,6 @@ class Graph:
         else:
             pass
 
-
     def add_node_bar(self, node, index):
 
         id = index
@@ -44,9 +44,7 @@ class Graph:
 
         self.representation[id] = node
         self.nb_nodes += 1
-        
 
-    
     def distance_between(self, bar1, bar2):
 
         lat1 = bar1["latitude"]
@@ -55,9 +53,8 @@ class Graph:
         long1 = bar1["longitude"]
         long2 = bar2["longitude"]
 
-        distance = dist = sqrt( (lat2 - lat1)**2 + (long2 - long1)**2 )
+        distance = sqrt((lat2 - lat1)**2 + (long2 - long1)**2)
         return distance
-
 
     def add_edge(self, node1, node2, weight=999):
         if not self.is_existing_edge(node1, node2):
@@ -131,7 +128,7 @@ class Graph:
         return exists
 
     def buildGraph(self):
-        bars = parser.loadBars("jsonParsing/barsComplete.json")
+        bars = parser.loadBars("../jsonParsing/barsComplete.json")
 
         for index, bar in enumerate(bars):
             self.add_node_bar(bar, index)
