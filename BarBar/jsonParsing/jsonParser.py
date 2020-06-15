@@ -3,6 +3,8 @@ import os
 
 def loadBars(filePath):
 
+    print(os.getcwd())
+
     with open(filePath, 'r', encoding='utf8') as f:
         data = json.load(f)
 
