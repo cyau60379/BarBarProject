@@ -1,10 +1,10 @@
 import itertools
 from geopy.geocoders import Nominatim
-import jsonParsing.jsonParser as parser
+import jsonParsing.json_parser as parser
 
 from GraphStructure.Graph import Graph
 
-BARS = parser.loadBars("../jsonParsing/barsComplete.json")
+BARS = parser.load_bars("../jsonParsing/bars_complete.json")
 
 
 def tsp_executor(algorithm, address, bar_number, price):
@@ -19,7 +19,8 @@ def tsp_executor(algorithm, address, bar_number, price):
                   "-------- BARS\n".format("Held-Karp", bar_number, price, "1.0")
     print(min_graph.representation)
     for i in path:
-        result_text += str(i + 1) + "." + min_graph.representation[i]['name'] + "(" + min_graph.representation[i]['address'] + ")\n"
+        result_text += str(i + 1) + "." + min_graph.representation[i]['name'] + "(" + min_graph.representation[i][
+            'address'] + ")\n"
         bar_location.append((min_graph.representation[i]['longitude'], min_graph.representation[i]['latitude']))
     result_text += "\n"
     return bar_location, result_text
@@ -29,7 +30,7 @@ def tsp_executor(algorithm, address, bar_number, price):
 
 def initialize_problem(address):
     graph = Graph()
-    graph.buildGraph()
+    graph.build_graph()
     print("Bar Graph ok")
     position = {'name': 'Your position',
                 'address': address}

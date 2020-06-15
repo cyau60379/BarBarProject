@@ -1,11 +1,11 @@
-import jsonParser as parser
+import jsonParsing.json_parser as parser
 from geopy.geocoders import Nominatim
 import sys
 
 locator = Nominatim(user_agent="myGeocoder")
 
 file = "jsonParsing/bars.json"
-bars = parser.loadBars(file)
+bars = parser.load_bars(file)
 numberBars = len(bars)
 
 toRemove = []
@@ -29,7 +29,7 @@ for bar in bars:
 localizedBars = [bar for bar in bars if bar not in toRemove]
 
 json = {
-    "bars" : localizedBars
+    "bars": localizedBars
 }
 
 parser.save(json)

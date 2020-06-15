@@ -255,7 +255,8 @@ class GraphTests(unittest.TestCase):
         out = io.StringIO()
         sys.stdout = out
         print(g)
-        self.assertEqual(out.getvalue(), "{'new': [('new', 'node', 999)], 'node': [('node', 'test', 45)], 'test': []}\n")
+        self.assertEqual(out.getvalue(),
+                         "{'new': [('new', 'node', 999)], 'node': [('node', 'test', 45)], 'test': []}\n")
 
 
 if __name__ == '__main__':

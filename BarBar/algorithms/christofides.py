@@ -1,19 +1,16 @@
-import jsonParser as parser
-import Graph as graph
+import GraphStructure.Graph as graph
+
 
 def christofides(graph, start, iterations):
-  
     sorted_distances = sort_closest_bars(graph.dist)
 
-    visited = []
-    visited.append(start)
+    visited = [start]
 
     length = 0
     path = [start]
 
     # loops until the selected number of bars have been visited
-    for bar in range(iterations-1):
-
+    for bar in range(iterations - 1):
         next_bar = find_next_bar(start, sorted_distances, visited)
 
         path.append(next_bar)
@@ -26,6 +23,7 @@ def christofides(graph, start, iterations):
 
     return length, path
 
+
 def sort_closest_bars(dist):
     result = {}
 
@@ -34,8 +32,8 @@ def sort_closest_bars(dist):
 
     return result
 
-def find_next_bar(current, dist, visited):
 
+def find_next_bar(current, dist, visited):
     for key, value in dist[current].items():
         next_bar = key
         if next_bar not in visited:
@@ -44,8 +42,7 @@ def find_next_bar(current, dist, visited):
 
 
 if __name__ == '__main__':
-
     graph = graph.Graph()
-    graph.buildGraph()
+    graph.build_graph()
 
     christofides(graph, 0, 5)

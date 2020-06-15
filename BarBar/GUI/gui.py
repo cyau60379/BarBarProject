@@ -2,7 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 import json
 
-from GraphStructure.TSP_initializer import tsp_executor
+from GraphStructure.tsp_initializer import tsp_executor
 from algorithms.held_karp import *
 
 algorithms = {"REC_HELD_KARP": recursive_held_karp, "DYN_HELD_KARP": dynamic_held_karp, "PARA_HELD_KARP": parallel_held_karp}
