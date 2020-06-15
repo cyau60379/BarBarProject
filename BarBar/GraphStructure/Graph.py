@@ -40,9 +40,11 @@ class Graph:
 
             self.dist[other_node][id] = distance
             self.dist[id][other_node] = distance
+            self.nb_edges += 1
 
         self.representation[id] = node
         self.nb_nodes += 1
+        
 
     
     def distance_between(self, bar1, bar2):
