@@ -3,7 +3,7 @@ from algorithms.held_karp import *
 
 
 class HeldKarpTests(unittest.TestCase):
-    def test_held_karp(self):
+    def test__recursive_held_karp(self):
         graph = Graph()
 
         mat = [[999, 100, 1, 100, 2, 100],
@@ -20,7 +20,7 @@ class HeldKarpTests(unittest.TestCase):
             for j in range(6):
                 if k != j:
                     graph.add_edge(k, j, mat[k][j])
-        result = held_karp(graph, 0)
+        result = recursive_held_karp(graph, 0)
         self.assertEqual(result, (8, [0, 2, 1, 3, 5, 4, 0]))
 
     def test_dynamic_held_karp(self):
@@ -63,7 +63,7 @@ class HeldKarpTests(unittest.TestCase):
         result = parallel_held_karp(graph, 0)
         self.assertEqual(result, (8, [0, 2, 1, 3, 5, 4, 0]))
 
-    def test_held_karp_without_solution(self):
+    def test_recursive_held_karp_without_solution(self):
         graph = Graph()
 
         mat = [[999, 999, 1, 999, 2, 999],
@@ -80,15 +80,15 @@ class HeldKarpTests(unittest.TestCase):
             for j in range(6):
                 if k != j:
                     graph.add_edge(k, j, mat[k][j])
-        result = held_karp(graph, 0)
+        result = recursive_held_karp(graph, 0)
         self.assertEqual(result, None)
 
-    def test_held_karp_empty_graph(self):
+    def test_recursive_held_karp_empty_graph(self):
         graph = Graph()
-        result = held_karp(graph, 0)
+        result = recursive_held_karp(graph, 0)
         self.assertEqual(result, None)
 
-    def test_held_karp_isolated_start(self):
+    def test_recursive_held_karp_isolated_start(self):
         graph = Graph()
 
         mat = [[999, 999, 1, 999, 2, 999],
@@ -105,7 +105,7 @@ class HeldKarpTests(unittest.TestCase):
             for j in range(6):
                 if k != j:
                     graph.add_edge(k, j, mat[k][j])
-        result = held_karp(graph, 0)
+        result = recursive_held_karp(graph, 0)
         self.assertEqual(result, None)
 
 

@@ -5,18 +5,26 @@ import json
 from GraphStructure.TSP_initializer import tsp_executor
 from algorithms.held_karp import *
 
-algorithms = {"REC_HELD_KARP": held_karp, "DYN_HELD_KARP": dynamic_held_karp, "PARA_HELD_KARP": parallel_held_karp}
+algorithms = {"REC_HELD_KARP": recursive_held_karp, "DYN_HELD_KARP": dynamic_held_karp, "PARA_HELD_KARP": parallel_held_karp}
 
 
 def load_preferences():
-    with open('GUI/preferences.json5') as json_data:
+    with open('resources/preferences.json5') as json_data:
         preferences = json.load(json_data)
         return preferences
 
 
 def save_preferences(preferences):
-    with open('GUI/preferences.json5', 'w') as json_data:
+    with open('resources/preferences.json5', 'w') as json_data:
         json.dump(preferences, json_data)
+
+
+def latitude_to_pixel(lat):
+    return int(- 6649.230906 * lat + 325167.1262024)  # y in the app
+
+
+def longitude_to_pixel(lng):
+    return int(4370.486107 * lng - 9764.321537)  # x in the app
 
 
 class GlobalButton(Button):
@@ -67,8 +75,8 @@ class BarBarGUI(Tk):
         self.geometry('1100x600')
         self.title("BarBar")
         self.configure(background=self.color)
-        self.maxsize(1100, 600)
-        self.minsize(400, 500)
+        self.maxsize(1300, 600)
+        self.minsize(1300, 600)
         self.add_menubar()
         self.start_page()
 
@@ -116,29 +124,44 @@ class BarBarGUI(Tk):
 
         self.config(menu=menubar)
 
-    def action(self, error_label, city_map, position_entry, nb_bar_entry, price_entry):
+    def action(self, error_label, city_map, position_entry, nb_bar_entry, price_entry, result):
         try:
             algorithm = algorithms[self.var.get()]
             address = position_entry.get()
             bar_number = nb_bar_entry.get()
             price = price_entry.get()
-            coords = tsp_executor(algorithm, address, bar_number, price)
-            self.trace_graph(city_map)
+            error_label.configure(text="")
+            coords, result_text = tsp_executor(algorithm, address, bar_number, price)
+            result.configure(state=NORMAL)
+            result.insert(END, result_text)
+            result.configure(state=DISABLED)
+            self.trace_graph(city_map, coords)
         except:
             self.error(error_label)
+            # TODO: Remove the following line
+            self.trace_graph(city_map, [(2.338028, 48.861147), (2.35005, 48.852937)])
 
     def error(self, error_label):
         error_label.configure(text="Error")
 
-    def trace_graph(self, city_map, coords=None):
-        coords = [(100, 100), (200, 200), (300, 200)]
-        for i in range(len(coords) - 1):
-            city_map.create_oval(coords[i][0] - 1, coords[i][1] - 1, coords[i][0] + 1, coords[i][1] + 1, width=8,
-                                 outline='blue')
-            city_map.create_oval(coords[i + 1][0] - 1, coords[i + 1][1] - 1, coords[i + 1][0] + 1, coords[i + 1][1] + 1,
-                                 width=8, outline='blue')
-            city_map.create_line(coords[i][0], coords[i][1], coords[i + 1][0], coords[i + 1][1], arrow='last',
-                                 capstyle='round', width=4, fill=self.font_color)
+    def trace_graph(self, city_map, coords):
+        pixel_coords = self.coords_to_pixels(coords)
+        for i in range(len(pixel_coords) - 1):
+            x1 = pixel_coords[i][0]
+            y1 = pixel_coords[i][1]
+            x2 = pixel_coords[i + 1][0]
+            y2 = pixel_coords[i + 1][1]
+            city_map.create_oval(x1 - 1, y1 - 1, x1 + 1, y1 + 1, width=8, outline='blue')
+            city_map.create_oval(x2 - 1, y2 - 1, x2 + 1, y2 + 1, width=8, outline='blue')
+            city_map.create_line(x1, y1, x2, y2, arrow='last', capstyle='round', width=4, fill=self.color)
+
+    def coords_to_pixels(self, coords):
+        pixel_coords = []
+        for i in range(len(coords)):
+            x = longitude_to_pixel(coords[i][0])
+            y = latitude_to_pixel(coords[i][1])
+            pixel_coords.append((x, y))
+        return pixel_coords
 
     def search_page(self):
         self.refresh_pane()
@@ -148,6 +171,11 @@ class BarBarGUI(Tk):
         control_panel.grid(row=0, column=0, sticky='nsew')
 
         city_map = Canvas(self, width=700, bd=3, relief=GROOVE, bg=self.color)  # 700*600
+        load = Image.open("resources/" + "city_map.png")
+        image = load.resize((800, 600), Image.ANTIALIAS)
+        img = ImageTk.PhotoImage(image)
+        city_map.create_image(0, 0, image=img, anchor=NW)
+        city_map.image = img
         city_map.grid(row=0, column=1, sticky='nsew')
 
         position_label = ChoiceLabel(control_panel, "Position", self.font_color, self.color)
@@ -173,12 +201,14 @@ class BarBarGUI(Tk):
             choice.pack()
 
         error_label = ChoiceLabel(control_panel, "", self.font_color, self.color)
+        result = Text(control_panel, relief=GROOVE, width=50, height=200, padx=0, pady=0, state=DISABLED)
 
         validate_choice = GlobalButton(control_panel, self.font_color, self.color, text="NEXT",
-                                       command=lambda: self.action(error_label, city_map, position_entry, nb_bar_entry, price_entry))
+                                       command=lambda: self.action(error_label, city_map, position_entry, nb_bar_entry, price_entry, result))
 
         validate_choice.pack(padx=10, pady=10)
         error_label.pack(padx=10, pady=10)
+        result.pack()
 
         self.grid_rowconfigure(0, minsize=200, weight=1)
         self.grid_columnconfigure(0, minsize=200, weight=1)
@@ -189,7 +219,7 @@ class BarBarGUI(Tk):
         self.add_menubar()
         self.active_page = self.start_page
         zoom = 0.3
-        load = Image.open("GUI/" + self.pref['preferences'] + "BarBar.jpg")
+        load = Image.open("resources/" + self.pref['preferences'] + "BarBar.jpg")
         pixels_x, pixels_y = tuple([int(zoom * x) for x in load.size])
         image = load.resize((pixels_x, pixels_y), Image.ANTIALIAS)
         render = ImageTk.PhotoImage(image)

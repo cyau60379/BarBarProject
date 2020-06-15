@@ -73,6 +73,16 @@ class Graph:
                 edges.append(edge)
         return edges
 
+    def edge_bar_list(self, start):
+        edges = []
+        for bar in self.dist[start]:
+            edges.append(((start, self.representation[start]), (bar, self.representation[bar]), self.dist[start][bar]))
+        return edges
+
+    def build_sub_graph(self, bars):
+        for index, bar in enumerate(bars):
+            self.add_node_bar(bar, index)
+
     def get_dist_matrix(self):
         return self.dist
 

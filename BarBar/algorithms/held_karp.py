@@ -3,7 +3,7 @@ from multiprocessing import Pool, Manager
 from GraphStructure.Graph import Graph
 
 
-def held_karp(g, start):
+def recursive_held_karp(g, start):
     """
     Recursive Held-Karp algorithm for the Traveller Salesman Problem
     :param Graph g: a graph
@@ -23,7 +23,7 @@ def held_karp(g, start):
                 break
         if is_possible:
             s.remove(start)
-            distance, path = rec_held_karp(s, start, dist, [start], start)
+            distance, path = aux_rec_held_karp(s, start, dist, [start], start)
             if not path:
                 return None
             return distance, path
@@ -31,7 +31,7 @@ def held_karp(g, start):
             return None
 
 
-def rec_held_karp(s, current, dist, path, start):
+def aux_rec_held_karp(s, current, dist, path, start):
     """
     Auxiliary recursive function for the Held-Karp algorithm
     :param list s: list of nodes of the graph that must be reached
@@ -52,7 +52,7 @@ def rec_held_karp(s, current, dist, path, start):
                 continue
             new_s = s[:]
             new_s.remove(x)
-            distance, new_path = rec_held_karp(new_s, x, dist, path[:] + [x], start)
+            distance, new_path = aux_rec_held_karp(new_s, x, dist, path[:] + [x], start)
             current_list.append((dist[current][x] + distance, new_path))
         if not current_list:
             return 999, []
@@ -79,7 +79,7 @@ def add_start_dist(start, dist, tup):
     return new_dist, final_path
 
 
-def find_subsets(s, m):
+def find_sublists(s, m):
     """
     Function which find all possible subsets from a set (not all the permutations)
     :param tuple s: set to be tested
@@ -102,15 +102,15 @@ def dynamic_held_karp(g, start):
     node_set = tuple(nodes)
     path_dict = {}
     for node in nodes:
-        path_dict[((node,), node)] = (dist_matrix[node][start], [node, start])
+        path_dict[((node,), node)] = (dist_matrix[start][node], [start, node])
 
     for s in range(2, len(nodes) + 1):
-        subsets = find_subsets(node_set, s)
+        subsets = find_sublists(node_set, s)
         for subset in subsets:
             path_dict_filler(dist_matrix, path_dict, subset)
 
-    distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[start][m],
-                           [start] + path_dict[(node_set, m)][1]) for m in node_set])
+    distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[m][start],
+                           path_dict[(node_set, m)][1] + [start]) for m in node_set])
 
     return distance, path
 
@@ -131,15 +131,15 @@ def parallel_held_karp(g, start, processors=3):
     path_dict = manager.dict()
 
     for node in nodes:
-        path_dict[((node,), node)] = (dist_matrix[node][start], [node, start])
+        path_dict[((node,), node)] = (dist_matrix[start][node], [start, node])
 
     for s in range(2, len(nodes) + 1):
-        subsets = find_subsets(node_set, s)
+        subsets = find_sublists(node_set, s)
         pool = Pool(processors)
         [pool.apply(path_dict_filler, args=(dist_matrix, path_dict, subset)) for subset in subsets]
 
-    distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[start][m],
-                           [start] + path_dict[(node_set, m)][1]) for m in node_set])
+    distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[m][start],
+                           path_dict[(node_set, m)][1] + [start]) for m in node_set])
 
     return distance, path
 
@@ -150,5 +150,5 @@ def path_dict_filler(dist_matrix, path_dict, subset):
         new_sub.remove(node)
         new_subset = tuple(new_sub)
         path_dict[(subset, node)] = min(
-            [(path_dict[(new_subset, m)][0] + dist_matrix[node][m],
-              [node] + path_dict[(new_subset, m)][1]) for m in new_subset])
+            [(path_dict[(new_subset, m)][0] + dist_matrix[m][node],
+              path_dict[(new_subset, m)][1] + [node]) for m in new_subset])
