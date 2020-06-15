@@ -1,3 +1,6 @@
+import jsonParser as parser
+from math import sqrt
+
 class Graph:
 
     def __init__(self):
@@ -22,6 +25,39 @@ class Graph:
             self.nb_nodes += 1
         else:
             pass
+
+
+    def add_node_bar(self, node, index):
+
+        id = index
+
+        self.dist[id] = {id: 999}
+
+        for other_node in self.node_list():
+
+            other_bar = self.representation[other_node]
+            distance = self.distance_between(node, other_bar)
+
+            self.dist[other_node][id] = distance
+            self.dist[id][other_node] = distance
+            self.nb_edges += 1
+
+        self.representation[id] = node
+        self.nb_nodes += 1
+        
+
+    
+    def distance_between(self, bar1, bar2):
+
+        lat1 = bar1["latitude"]
+        lat2 = bar2["latitude"]
+
+        long1 = bar1["longitude"]
+        long2 = bar2["longitude"]
+
+        distance = dist = sqrt( (lat2 - lat1)**2 + (long2 - long1)**2 )
+        return distance
+
 
     def add_edge(self, node1, node2, weight=999):
         if not self.is_existing_edge(node1, node2):
@@ -94,6 +130,12 @@ class Graph:
                 break
         return exists
 
+    def buildGraph(self):
+        bars = parser.loadBars("jsonParsing/barsComplete.json")
+
+        for index, bar in enumerate(bars):
+            self.add_node_bar(bar, index)
+
     def __str__(self):
         return str(self.representation)
 
@@ -102,14 +144,8 @@ class Graph:
 if __name__ == '__main__':
 
     graph = Graph()
+    graph.buildGraph()
 
-    for i in range(5):
-        graph.add_node(i)
-
-    for i in range(5):
-        for j in range(5):
-            if i != j:
-                graph.add_edge(i, j)
     print(graph)
     print("In neighbors 0: ", graph.get_in_neighbors(0))
     print("In degree 0: ", graph.in_degree(0))
