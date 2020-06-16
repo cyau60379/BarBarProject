@@ -33,6 +33,18 @@ def longitude_to_pixel(lng):
     return int(4370.486107 * lng - 9764.321537)  # x in the app
 
 
+def min_coord(coord_list, index):
+    mini = 999999
+    for tup in coord_list:
+        if tup[index] < mini:
+            mini = tup[index]
+    return mini
+
+
+def corner_coord(min_x, min_y):
+    return - 10 * min_x + 100, - 10 * min_y + 100
+
+
 class GlobalButton(Button):
     def __init__(self, father, font_color, color, **kw):
         super().__init__(father,
@@ -130,7 +142,7 @@ class BarBarGUI(Tk):
 
         self.config(menu=menubar)
 
-    def action(self, error_label, city_map, position_entry, nb_bar_entry, price_entry, result):
+    def action(self, error_label, city_map, position_entry, nb_bar_entry, price_entry, result, load):
         try:
             algorithm = algorithms[self.var.get()]
             is_hk = False
@@ -144,25 +156,37 @@ class BarBarGUI(Tk):
             result.configure(state=NORMAL)
             result.insert(END, result_text)
             result.configure(state=DISABLED)
-            self.trace_graph(city_map, coords)
+            self.trace_graph(city_map, coords, load)
         except IndexError:
             self.error(error_label)
-            # TODO: Remove the following line
-            self.trace_graph(city_map, [(2.338028, 48.861147), (2.35005, 48.852937)])
 
     def error(self, error_label):
         error_label.configure(text="Error")
 
-    def trace_graph(self, city_map, coords):
+    def trace_graph(self, city_map, coords, load):
         pixel_coords = self.coords_to_pixels(coords)
+        min_x = min_coord(pixel_coords, 0)
+        min_y = min_coord(pixel_coords, 1)
+        new_coords = corner_coord(min_x, min_y)
+        image = load.resize((8000, 6000), Image.ANTIALIAS)
+        img = ImageTk.PhotoImage(image)
+        city_map.create_image(new_coords[0], new_coords[1], image=img, anchor=NW)
+        city_map.image = img
+        print(pixel_coords)
         for i in range(len(pixel_coords) - 1):
-            x1 = pixel_coords[i][0]
-            y1 = pixel_coords[i][1]
-            x2 = pixel_coords[i + 1][0]
-            y2 = pixel_coords[i + 1][1]
-            city_map.create_oval(x1 - 1, y1 - 1, x1 + 1, y1 + 1, width=8, outline='blue')
-            city_map.create_oval(x2 - 1, y2 - 1, x2 + 1, y2 + 1, width=8, outline='blue')
-            city_map.create_line(x1, y1, x2, y2, arrow='last', capstyle='round', width=4, fill=self.color)
+            x1 = 10 * pixel_coords[i][0] + new_coords[0]
+            y1 = 10 * pixel_coords[i][1] + new_coords[1]
+            x2 = 10 * pixel_coords[i + 1][0] + new_coords[0]
+            y2 = 10 * pixel_coords[i + 1][1] + new_coords[1]
+            if i == 0:
+                city_map.create_oval(x1 - 1, y1 - 1, x1 + 1, y1 + 1, width=8, outline='red')
+            else:
+                city_map.create_oval(x1 - 1, y1 - 1, x1 + 1, y1 + 1, width=8, outline='blue')
+            if i == len(pixel_coords) - 2:
+                city_map.create_oval(x2 - 1, y2 - 1, x2 + 1, y2 + 1, width=8, outline='red')
+            else:
+                city_map.create_oval(x2 - 1, y2 - 1, x2 + 1, y2 + 1, width=8, outline='blue')
+            city_map.create_line(x1, y1, x2, y2, arrow='last', capstyle='round', width=8, fill=self.color)
 
     def coords_to_pixels(self, coords):
         pixel_coords = []
@@ -213,7 +237,8 @@ class BarBarGUI(Tk):
         result = Text(control_panel, relief=GROOVE, width=50, height=200, padx=0, pady=0, state=DISABLED)
 
         validate_choice = GlobalButton(control_panel, self.font_color, self.color, text="NEXT",
-                                       command=lambda: self.action(error_label, city_map, position_entry, nb_bar_entry, price_entry, result))
+                                       command=lambda: self.action(error_label, city_map, position_entry, nb_bar_entry,
+                                                                   price_entry, result, load))
 
         validate_choice.pack(padx=10, pady=10)
         error_label.pack(padx=10, pady=10)

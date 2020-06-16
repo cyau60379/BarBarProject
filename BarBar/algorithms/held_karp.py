@@ -148,7 +148,7 @@ def path_dict_filler(dist_matrix, path_dict, subset):
     for node in subset:
         new_sub = set(subset)
         new_sub.remove(node)
-        new_subset = tuple(new_sub)
+        new_subset = tuple(sorted(new_sub))
         path_dict[(subset, node)] = min(
             [(path_dict[(new_subset, m)][0] + dist_matrix[m][node],
               path_dict[(new_subset, m)][1] + [node]) for m in new_subset])

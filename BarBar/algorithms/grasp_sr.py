@@ -130,7 +130,7 @@ def two_opt(path, indexes, graph):
         while start_again is True:
             start_again = False
             best_distance = path_length(path, graph)
-            for i in range(1, len(path) - 2):
+            for i in range(2, len(path) - 2):
                 for k in range(i + 1, len(path) - 1):
                     new_path = two_opt_swap(path, i, k)
                     new_indexes = two_opt_swap(indexes, i, k)
