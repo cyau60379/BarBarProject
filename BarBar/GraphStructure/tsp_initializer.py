@@ -7,25 +7,24 @@ from GraphStructure.Graph import Graph
 BARS = parser.load_bars("../jsonParsing/bars_complete.json")
 
 
-def tsp_executor(algorithm, address, bar_number, price):
+def tsp_executor(name, algorithm, address, bar_number, price, is_hk):
     graph, start = initialize_problem(address)
-    distance, path, min_graph = algo_for_combinations(graph, start, algorithm, bar_number)
+    distance, path, min_graph = algo_for_combinations(graph, start, algorithm, bar_number, price, is_hk)
     bar_location = []
     result_text = "========== RESULTS ===========\n" \
                   "Algorithm: {}\n" \
                   "Number of bars: {}\n" \
+                  "Distance: {}\n" \
                   "Price: {}\n" \
                   "Time execution: {}\n\n" \
-                  "-------- BARS\n".format("Held-Karp", bar_number, price, "1.0")
-    print(min_graph.representation)
+                  "-------- BARS\n".format(name, bar_number, distance, price, "1.0")
+    print(min_graph.node_dict)
     for i in path:
-        result_text += str(i + 1) + "." + min_graph.representation[i]['name'] + "(" + min_graph.representation[i][
+        result_text += str(i + 1) + "." + min_graph.node_dict[i]['name'] + "(" + min_graph.node_dict[i][
             'address'] + ")\n"
-        bar_location.append((min_graph.representation[i]['longitude'], min_graph.representation[i]['latitude']))
+        bar_location.append((min_graph.node_dict[i]['longitude'], min_graph.node_dict[i]['latitude']))
     result_text += "\n"
     return bar_location, result_text
-    # TODO: Remove the following line
-    # return [(2.338028, 48.861147), (2.35005, 48.852937)], result_text
 
 
 def initialize_problem(address):
@@ -57,7 +56,7 @@ def find_combinations(s, m):
     return list(itertools.combinations(s, m))
 
 
-def algo_for_combinations(graph, start, algorithm, bar_number):
+def algo_for_combinations(graph, start, algorithm, bar_number, price, is_hk):
     edge_list = graph.edge_bar_list(start)
     print("Edge list ok")
     remaining_bars = []
@@ -67,19 +66,27 @@ def algo_for_combinations(graph, start, algorithm, bar_number):
     for i in range(len(edge_list)):
         if edge_list[i][2] * 1000 < 3:
             remaining_bars.append(edge_list[i][1][1])
-    combinations = find_combinations(tuple(remaining_bars), int(bar_number))
-    print("Number of candidates: ", len(remaining_bars))
-    i = 0
-    for combination in combinations:
-        comb = [edge_list[0][0][1]] + list(combination)
+    if not is_hk:
+        bars = [edge_list[0][0][1]] + remaining_bars
         g = Graph()
-        g.build_sub_graph(comb)
+        g.build_sub_graph(bars)
         print("Subgraph ok")
-        distance, path = algorithm(g, 0)
-        print("Iteration ", i, ": Ok")
-        i += 1
-        if distance < min_dist:
-            min_dist = distance
-            min_path = path[:]
-            min_graph = g
-    return min_dist, min_path, min_graph
+        distance, path = algorithm(g, 0, int(bar_number), price)
+        return distance, path, g
+    else:
+        combinations = find_combinations(tuple(remaining_bars), int(bar_number))
+        print("Number of candidates: ", len(remaining_bars))
+        i = 0
+        for combination in combinations:
+            comb = [edge_list[0][0][1]] + list(combination)
+            g = Graph()
+            g.build_sub_graph(comb)
+            print("Subgraph ok")
+            distance, path = algorithm(g, 0)
+            print("Iteration ", i, ": Ok")
+            i += 1
+            if distance < min_dist:
+                min_dist = distance
+                min_path = path[:]
+                min_graph = g
+        return min_dist, min_path, min_graph

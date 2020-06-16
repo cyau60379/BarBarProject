@@ -1,26 +1,31 @@
 import math
 import random
+from GraphStructure.Graph import Graph
 
 
-def grasp_sr(loc_list, max_path_len):
+def grasp_sr(graph, start, max_path_len, price):
+    loc_list = graph.node_list_price(start, price)
     path = [loc_list[0], loc_list[0]]  # initial path
     indexes = [0, 0]
     prev_path = []
     blocked_index = -1
     while prev_path != path:  # construction phase, repeat until path is unchanged
         prev_path = path.copy()
-        path, indexes, blocked_index = add_location(loc_list, path, indexes, max_path_len)
-    path, indexes = local_search(loc_list, path, indexes, max_path_len, blocked_index)  # local search phase
-    return path, path_rewards(path), path_length(path)
+        path, indexes, blocked_index = add_location(loc_list, path, indexes, max_path_len, graph)
+    path, indexes = local_search(loc_list, path, indexes, max_path_len, blocked_index, graph)  # local search phase
+    final_path = []
+    for tup in path:
+        final_path.append(tup[0])
+    return path_length(path, graph), final_path  # , path_rewards(path)
 
 
-def add_location(loc_list, path, indexes, max_path_len, blocked_index=-1):
+def add_location(loc_list, path, indexes, max_path_len, graph, blocked_index=-1):
     updated_path, updated_indexes = path.copy(), indexes.copy()
     candidate_list = []  # a candidate list of solutions
     for i in range(len(loc_list)):
         if i not in indexes and i != blocked_index:
-            path_2, indexes_2 = insertion(loc_list, path, indexes, i)
-            if path_length(path_2) <= max_path_len:
+            path_2, indexes_2 = insertion(loc_list, path, indexes, i, graph)
+            if path_length(path_2, graph) <= max_path_len:
                 candidate_list.append((path_2, indexes_2))
             else:  # segment remove phase
                 beta = 1
@@ -29,14 +34,14 @@ def add_location(loc_list, path, indexes, max_path_len, blocked_index=-1):
                         beta = alpha
                     path_3 = path_2[:alpha] + path_2[beta + 1:]
                     indexes_3 = indexes_2[:alpha] + indexes_2[beta + 1:]
-                    while (beta + 1 < len(path_2)) and (path_length(path_3) > max_path_len):
+                    while (beta + 1 < len(path_2)) and (path_length(path_3, graph) > max_path_len):
                         beta += 1
                         path_3 = path_2[:alpha] + path_2[beta + 1:]
                         indexes_3 = indexes_2[:alpha] + indexes_2[beta + 1:]
-                    if path_length(path_3) <= max_path_len:
+                    if path_length(path_3, graph) <= max_path_len:
                         if (path_rewards(path_3) > path_rewards(path)) \
                                 or (path_rewards(path_3) == path_rewards(path)
-                                    and path_length(path_3) < path_length(path)):
+                                    and path_length(path_3, graph) < path_length(path, graph)):
                             candidate_list.append((path_3, indexes_3))
         if candidate_list:
             candidate_list_2 = restrict(candidate_list)
@@ -44,36 +49,36 @@ def add_location(loc_list, path, indexes, max_path_len, blocked_index=-1):
     return updated_path, updated_indexes, blocked_index
 
 
-def local_search(loc_list, path, indexes, max_path_len, blocked_index):
+def local_search(loc_list, path, indexes, max_path_len, blocked_index, graph):
     updated_path, updated_indexes = path.copy(), indexes.copy()
     prev_updated_path = []
     while prev_updated_path != updated_path:  # repeat until updated_path is unchanged
         prev_updated_path = updated_path.copy()
         for i in range(1, len(path) - 1):
             path_2, indexes_2 = remove(updated_path, updated_indexes, i)
-            path_2, indexes_2 = two_opt(path_2, indexes_2)
+            path_2, indexes_2 = two_opt(path_2, indexes_2, graph)
             blocked_location_index = blocked_index  # index of blocked location from updated_indexes
             prev_path_2 = []
             while prev_path_2 != path_2:  # repeat until path_2 is unchanged
                 prev_path_2 = path_2.copy()
-                path_2, indexes_2, blocked_index = add_location(loc_list, path_2, indexes_2, max_path_len,
+                path_2, indexes_2, blocked_index = add_location(loc_list, path_2, indexes_2, max_path_len, graph,
                                                                 blocked_location_index)
             if (path_rewards(path_2) > path_rewards(updated_path)) \
                     or (path_rewards(path_2) == path_rewards(updated_path)
-                        and path_length(path_2) < path_length(updated_path)):
+                        and path_length(path_2, graph) < path_length(updated_path, graph)):
                 updated_path = path_2.copy()
                 updated_indexes = indexes_2.copy()
     return updated_path, updated_indexes
 
 
-def insertion(loc_list, path, indexes, i):
+def insertion(loc_list, path, indexes, i, graph):
     path_2 = path[:1] + [loc_list[i]] + path[1:]
     indexes_2 = indexes[:1] + [i] + indexes[1:]
-    diff = path_length(path_2) - path_length(path)
+    diff = path_length(path_2, graph) - path_length(path, graph)
     for j in range(2, len(path)):
         path_2_test = path[:j] + [loc_list[i]] + path[j:]
         indexes_2_test = indexes[:j] + [i] + indexes[j:]
-        diff_test = path_length(path_2_test) - path_length(path)
+        diff_test = path_length(path_2_test, graph) - path_length(path, graph)
         if diff_test < diff:
             path_2 = path_2_test.copy()
             indexes_2 = indexes_2_test.copy()
@@ -86,10 +91,10 @@ def remove(path, indexes, i):
     return path_2, indexes_2
 
 
-def path_length(path):
+def path_length(path, graph):
     result = 0
     for i in range(1, len(path)):
-        result += euclidean_distance(path[i - 1][0], path[i][0])
+        result += graph.adjacency_matrix[path[i - 1][0]][path[i][0]]
     return result
 
 
@@ -116,20 +121,20 @@ def restrict(candidate_list, c_best=0.2):
     return candidate_list_2
 
 
-def two_opt(path, indexes):
-    current_distance = path_length(path)
+def two_opt(path, indexes, graph):
+    current_distance = path_length(path, graph)
     best_distance = current_distance - 1
     while best_distance < current_distance:
         current_distance = best_distance
         start_again = True
         while start_again is True:
             start_again = False
-            best_distance = path_length(path)
+            best_distance = path_length(path, graph)
             for i in range(1, len(path) - 2):
                 for k in range(i + 1, len(path) - 1):
                     new_path = two_opt_swap(path, i, k)
                     new_indexes = two_opt_swap(indexes, i, k)
-                    new_distance = path_length(new_path)
+                    new_distance = path_length(new_path, graph)
                     if new_distance < best_distance:
                         path = new_path.copy()
                         indexes = new_indexes.copy()
@@ -146,9 +151,11 @@ def two_opt_swap(route, i, k):
 
 
 if __name__ == '__main__':
-    locations = [((0, 0), 0), ((0, 1), 5), ((0, 2), 5),
-                 ((1, 0), 5), ((1, 1), 5), ((1, 2), 5),
-                 ((2, 0), 5), ((2, 1), 5), ((2, 2), 1)]
+    # locations = [((0, 0), 0), ((0, 1), 5), ((0, 2), 5),
+    #              ((1, 0), 5), ((1, 1), 5), ((1, 2), 5),
+    #              ((2, 0), 5), ((2, 1), 5), ((2, 2), 1)]
+    g = Graph()
+    g.build_graph()
     max_len = 9
-    final_path, reward, length = grasp_sr(locations, max_len)
-    print(f'with max_len {max_len}\nfinal_path: {final_path}\nreward: {reward}\nlength: {length}')
+    length, final_path = grasp_sr(g, 0, max_len, 0)
+    print(f'with max_len {max_len}\nfinal_path: {final_path}\nreward: {0}\nlength: {length}')

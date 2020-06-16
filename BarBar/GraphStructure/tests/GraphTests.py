@@ -7,7 +7,7 @@ from GraphStructure.Graph import Graph
 class GraphTests(unittest.TestCase):
     def test_init(self):
         g = Graph()
-        test_list = [(g.representation, {}), (g.dist, {}), (g.nb_nodes, 0), (g.nb_edges, 0)]
+        test_list = [(g.node_dict, {}), (g.adjacency_matrix, {}), (g.nb_nodes, 0), (g.nb_edges, 0)]
         for g_element, expected_value in test_list:
             with self.subTest():
                 self.assertEqual(g_element, expected_value)
@@ -23,8 +23,8 @@ class GraphTests(unittest.TestCase):
     def test_add_node(self):
         g = Graph()
         g.add_node("test")
-        test_list = [(g.representation, {"test": []}),
-                     (g.dist, {"test": {"test": 999}}),
+        test_list = [(g.node_dict, {"test": []}),
+                     (g.adjacency_matrix, {"test": {"test": 999}}),
                      (g.nb_nodes, 1),
                      (g.nb_edges, 0)]
         for g_element, expected_value in test_list:
@@ -35,8 +35,8 @@ class GraphTests(unittest.TestCase):
         g = Graph()
         g.add_node("test")
         g.add_node("test")
-        test_list = [(g.representation, {"test": []}),
-                     (g.dist, {"test": {"test": 999}}),
+        test_list = [(g.node_dict, {"test": []}),
+                     (g.adjacency_matrix, {"test": {"test": 999}}),
                      (g.nb_nodes, 1),
                      (g.nb_edges, 0)]
         for g_element, expected_value in test_list:
@@ -47,8 +47,8 @@ class GraphTests(unittest.TestCase):
         g = Graph()
         g.add_node("test")
         g.add_node("another")
-        test_list = [(g.representation, {"test": [], "another": []}),
-                     (g.dist, {"test": {"test": 999, "another": 999}, "another": {"test": 999, "another": 999}}),
+        test_list = [(g.node_dict, {"test": [], "another": []}),
+                     (g.adjacency_matrix, {"test": {"test": 999, "another": 999}, "another": {"test": 999, "another": 999}}),
                      (g.nb_nodes, 2),
                      (g.nb_edges, 0)]
         for g_element, expected_value in test_list:
@@ -60,8 +60,8 @@ class GraphTests(unittest.TestCase):
         g.add_node("new")
         g.add_node("node")
         g.add_edge("new", "node")
-        test_list = [(g.representation, {"new": [("new", "node", 999)], "node": []}),
-                     (g.dist, {"new": {"new": 999, "node": 999}, "node": {"new": 999, "node": 999}}),
+        test_list = [(g.node_dict, {"new": [("new", "node", 999)], "node": []}),
+                     (g.adjacency_matrix, {"new": {"new": 999, "node": 999}, "node": {"new": 999, "node": 999}}),
                      (g.nb_nodes, 2),
                      (g.nb_edges, 1)]
         for g_element, expected_value in test_list:
@@ -74,8 +74,8 @@ class GraphTests(unittest.TestCase):
         g.add_node("node")
         g.add_edge("new", "node")
         g.add_edge("new", "node")
-        test_list = [(g.representation, {"new": [("new", "node", 999)], "node": []}),
-                     (g.dist, {"new": {"new": 999, "node": 999}, "node": {"new": 999, "node": 999}}),
+        test_list = [(g.node_dict, {"new": [("new", "node", 999)], "node": []}),
+                     (g.adjacency_matrix, {"new": {"new": 999, "node": 999}, "node": {"new": 999, "node": 999}}),
                      (g.nb_nodes, 2),
                      (g.nb_edges, 1)]
         for g_element, expected_value in test_list:
@@ -89,8 +89,8 @@ class GraphTests(unittest.TestCase):
         g.add_node("test")
         g.add_edge("new", "node")
         g.add_edge("node", "test", 45)
-        test_list = [(g.representation, {"new": [("new", "node", 999)], "node": [("node", "test", 45)], "test": []}),
-                     (g.dist, {"new": {"new": 999, "node": 999, "test": 999},
+        test_list = [(g.node_dict, {"new": [("new", "node", 999)], "node": [("node", "test", 45)], "test": []}),
+                     (g.adjacency_matrix, {"new": {"new": 999, "node": 999, "test": 999},
                                "node": {"new": 999, "node": 999, "test": 45},
                                "test": {"new": 999, "node": 999, "test": 999}}),
                      (g.nb_nodes, 3),
@@ -256,7 +256,9 @@ class GraphTests(unittest.TestCase):
         sys.stdout = out
         print(g)
         self.assertEqual(out.getvalue(),
-                         "{'new': [('new', 'node', 999)], 'node': [('node', 'test', 45)], 'test': []}\n")
+                         "{'new': {'new': 999, 'node': 999, 'test': 999}, "
+                         "'node': {'node': 999, 'new': 999, 'test': 45}, "
+                         "'test': {'test': 999, 'new': 999, 'node': 999}}\n")
 
 
 if __name__ == '__main__':

@@ -1,40 +1,42 @@
 import GraphStructure.Graph as graph
 
 
-def christofides(graph, start, iterations):
-    sorted_distances = sort_closest_bars(graph.dist)
+def christofides(graph, start, iterations, price=0):
+    sorted_distances = sort_closest_bars(graph.adjacency_matrix)
 
     visited = [start]
 
     length = 0
     path = [start]
-
+    current = start
     # loops until the selected number of bars have been visited
     for bar in range(iterations - 1):
-        next_bar = find_next_bar(start, sorted_distances, visited)
+        next_bar = find_next_bar(current, sorted_distances, visited)
 
         path.append(next_bar)
         visited.append(next_bar)
-        length += graph.dist[start][next_bar]
-        start = next_bar
+        length += graph.adjacency_matrix[current][next_bar]
+        current = next_bar
 
+    length += graph.adjacency_matrix[path[-1]][start]
+    path.append(start)
     print("Result path: ", path)
     print("Result length of the path: ", length)
 
     return length, path
 
 
-def sort_closest_bars(dist):
+def sort_closest_bars(adjacency_matrix):
     result = {}
 
-    for key, value in dist.items():
+    for key, value in adjacency_matrix.items():
         result[key] = {k: v for k, v in sorted(value.items(), key=lambda item: item[1])}
 
     return result
 
 
-def find_next_bar(current, dist, visited):
-    for key, value in dist[current].items():
+def find_next_bar(current, adjacency_matrix, visited):
+    for key, value in adjacency_matrix[current].items():
         next_bar = key
         if next_bar not in visited:
             return next_bar

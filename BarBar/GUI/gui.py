@@ -3,9 +3,15 @@ from PIL import Image, ImageTk
 import json
 
 from GraphStructure.tsp_initializer import tsp_executor
+from algorithms.christofides import *
+from algorithms.grasp_sr import *
 from algorithms.held_karp import *
 
-algorithms = {"REC_HELD_KARP": recursive_held_karp, "DYN_HELD_KARP": dynamic_held_karp, "PARA_HELD_KARP": parallel_held_karp}
+algorithms = {"REC_HELD_KARP": recursive_held_karp,
+              "DYN_HELD_KARP": dynamic_held_karp,
+              "PARA_HELD_KARP": parallel_held_karp,
+              "GRASP_SR": grasp_sr,
+              "CHRISTOFIDES": christofides}
 
 
 def load_preferences():
@@ -127,11 +133,14 @@ class BarBarGUI(Tk):
     def action(self, error_label, city_map, position_entry, nb_bar_entry, price_entry, result):
         try:
             algorithm = algorithms[self.var.get()]
+            is_hk = False
+            if 'HELD_KARP' in self.var.get():
+                is_hk = True
             address = position_entry.get()
             bar_number = nb_bar_entry.get()
             price = price_entry.get()
             error_label.configure(text="")
-            coords, result_text = tsp_executor(algorithm, address, bar_number, price)
+            coords, result_text = tsp_executor(self.var.get(), algorithm, address, bar_number, price, is_hk)
             result.configure(state=NORMAL)
             result.insert(END, result_text)
             result.configure(state=DISABLED)

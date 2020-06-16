@@ -14,21 +14,21 @@ def recursive_held_karp(g, start):
     dist = g.get_dist_matrix()
 
     if start not in s:
-        return None
+        return 999999, []
     else:
         is_possible = False
         for i in range(len(dist)):
-            if dist[i][start] != 999:
+            if dist[i][start] != 999999:
                 is_possible = True
                 break
         if is_possible:
             s.remove(start)
             distance, path = aux_rec_held_karp(s, start, dist, [start], start)
             if not path:
-                return None
+                return 999999, []
             return distance, path
         else:
-            return None
+            return 999999, []
 
 
 def aux_rec_held_karp(s, current, dist, path, start):
@@ -42,25 +42,25 @@ def aux_rec_held_karp(s, current, dist, path, start):
     :return: the tuple (distance, path) to go to the next node with the minimum cost
     """
     if len(s) == 1:
-        if dist[current][s[0]] == 999:
-            return 999, []
+        if dist[current][s[0]] == 999999:
+            return 999999, []
         return dist[current][s[0]], path + [s[0]]
     else:
         current_list = []
         for x in s:
-            if dist[current][x] == 999:
+            if dist[current][x] == 999999:
                 continue
             new_s = s[:]
             new_s.remove(x)
             distance, new_path = aux_rec_held_karp(new_s, x, dist, path[:] + [x], start)
             current_list.append((dist[current][x] + distance, new_path))
         if not current_list:
-            return 999, []
+            return 999999, []
         if current == start:
             try:
                 return min(map(lambda tup: add_start_dist(current, dist, tup), current_list))
             except IndexError:
-                return 999, []
+                return 999999, []
         else:
             return min(current_list)
 

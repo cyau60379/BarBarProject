@@ -5,8 +5,8 @@ from math import sqrt
 class Graph:
 
     def __init__(self):
-        self.representation = {}
-        self.dist = {}
+        self.node_dict = {}
+        self.adjacency_matrix = {}
         self.nb_nodes = 0
         self.nb_edges = 0
 
@@ -17,12 +17,12 @@ class Graph:
         return self.nb_edges
 
     def add_node(self, node):
-        if node not in self.representation:
-            self.dist[node] = {node: 999}
+        if node not in self.node_dict:
+            self.adjacency_matrix[node] = {node: 999999}
             for other_node in self.node_list():
-                self.dist[other_node][node] = 999
-                self.dist[node][other_node] = 999
-            self.representation[node] = []
+                self.adjacency_matrix[other_node][node] = 999999
+                self.adjacency_matrix[node][other_node] = 999999
+            self.node_dict[node] = []
             self.nb_nodes += 1
         else:
             pass
@@ -31,17 +31,17 @@ class Graph:
 
         id = index
 
-        self.dist[id] = {id: 999}
+        self.adjacency_matrix[id] = {id: 999999}
 
         for other_node in self.node_list():
-            other_bar = self.representation[other_node]
+            other_bar = self.node_dict[other_node]
             distance = self.distance_between(node, other_bar)
 
-            self.dist[other_node][id] = distance
-            self.dist[id][other_node] = distance
+            self.adjacency_matrix[other_node][id] = distance
+            self.adjacency_matrix[id][other_node] = distance
             self.nb_edges += 1
 
-        self.representation[id] = node
+        self.node_dict[id] = node
         self.nb_nodes += 1
 
     def distance_between(self, bar1, bar2):
@@ -55,40 +55,56 @@ class Graph:
         distance = sqrt((lat2 - lat1) ** 2 + (long2 - long1) ** 2)
         return distance
 
-    def add_edge(self, node1, node2, weight=999):
+    def add_edge(self, node1, node2, weight=999999):
         if not self.is_existing_edge(node1, node2):
-            self.representation[node1].append((node1, node2, weight))
+            self.node_dict[node1].append((node1, node2, weight))
             self.nb_edges += 1
-            self.dist[node1][node2] = weight
+            self.adjacency_matrix[node1][node2] = weight
         else:
             pass
 
     def node_list(self):
         nodes = []
-        for key in self.representation:
+        for key in self.node_dict:
             nodes.append(key)
         return nodes
 
+    def node_list_price(self, start, price):
+        nodes = []
+        for key in self.node_dict:
+            if key != start:
+                reward = 1 - self.adjacency_matrix[key][start]
+                if 'price' in self.node_dict[key]:
+                    key_price_split = self.node_dict[key]['price'].split(',')
+                    try:
+                        key_price = key_price_split[0] + "." + key_price_split[1]
+                    except:
+                        key_price = key_price_split[0]
+                    if float(key_price) <= float(price):
+                        reward += 1
+                nodes.append((key, reward))
+        return [(start, 0)] + nodes
+
     def get_in_neighbors(self, node):
-        if node not in self.representation:
+        if node not in self.node_dict:
             raise IndexError
         else:
             neighbors = []
-            for key in self.representation:
+            for key in self.node_dict:
                 if key == node:
                     continue
-                for edge in self.representation[key]:
+                for edge in self.node_dict[key]:
                     if node in edge:
                         neighbors.append(key)
                         break
             return neighbors
 
     def get_out_neighbors(self, node):
-        if node not in self.representation:
+        if node not in self.node_dict:
             raise IndexError
         else:
             neighbors = []
-            for edge in self.representation[node]:
+            for edge in self.node_dict[node]:
                 neighbors.append(edge[1])
             return neighbors
 
@@ -100,15 +116,15 @@ class Graph:
 
     def edge_list(self):
         edges = []
-        for key in self.representation:
-            for edge in self.representation[key]:
+        for key in self.node_dict:
+            for edge in self.node_dict[key]:
                 edges.append(edge)
         return edges
 
     def edge_bar_list(self, start):
         edges = []
-        for bar in self.dist[start]:
-            edges.append(((start, self.representation[start]), (bar, self.representation[bar]), self.dist[start][bar]))
+        for bar in self.adjacency_matrix[start]:
+            edges.append(((start, self.node_dict[start]), (bar, self.node_dict[bar]), self.adjacency_matrix[start][bar]))
         return edges
 
     def build_sub_graph(self, bars):
@@ -116,11 +132,11 @@ class Graph:
             self.add_node_bar(bar, index)
 
     def get_dist_matrix(self):
-        return self.dist
+        return self.adjacency_matrix
 
     def is_existing_edge(self, node1, node2):
         exists = False
-        for tup in self.representation[node1]:
+        for tup in self.node_dict[node1]:
             if tup[1] == node2:
                 exists = True
                 break
@@ -133,7 +149,7 @@ class Graph:
             self.add_node_bar(bar, index)
 
     def __str__(self):
-        return str(self.representation)
+        return str(self.adjacency_matrix)
 
 
 """
