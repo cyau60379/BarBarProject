@@ -10,7 +10,7 @@ def christofides(graph, start, iterations, price=0):
     path = [start]
     current = start
     # loops until the selected number of bars have been visited
-    for bar in range(iterations - 1):
+    for bar in range(iterations):
         next_bar = find_next_bar(current, sorted_distances, visited)
 
         path.append(next_bar)

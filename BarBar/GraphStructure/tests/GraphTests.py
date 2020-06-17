@@ -24,7 +24,7 @@ class GraphTests(unittest.TestCase):
         g = Graph()
         g.add_node("test")
         test_list = [(g.node_dict, {"test": []}),
-                     (g.adjacency_matrix, {"test": {"test": 999}}),
+                     (g.adjacency_matrix, {"test": {"test": 999999}}),
                      (g.nb_nodes, 1),
                      (g.nb_edges, 0)]
         for g_element, expected_value in test_list:
@@ -36,7 +36,7 @@ class GraphTests(unittest.TestCase):
         g.add_node("test")
         g.add_node("test")
         test_list = [(g.node_dict, {"test": []}),
-                     (g.adjacency_matrix, {"test": {"test": 999}}),
+                     (g.adjacency_matrix, {"test": {"test": 999999}}),
                      (g.nb_nodes, 1),
                      (g.nb_edges, 0)]
         for g_element, expected_value in test_list:
@@ -48,7 +48,8 @@ class GraphTests(unittest.TestCase):
         g.add_node("test")
         g.add_node("another")
         test_list = [(g.node_dict, {"test": [], "another": []}),
-                     (g.adjacency_matrix, {"test": {"test": 999, "another": 999}, "another": {"test": 999, "another": 999}}),
+                     (g.adjacency_matrix,
+                      {"test": {"test": 999999, "another": 999999}, "another": {"test": 999999, "another": 999999}}),
                      (g.nb_nodes, 2),
                      (g.nb_edges, 0)]
         for g_element, expected_value in test_list:
@@ -60,8 +61,8 @@ class GraphTests(unittest.TestCase):
         g.add_node("new")
         g.add_node("node")
         g.add_edge("new", "node")
-        test_list = [(g.node_dict, {"new": [("new", "node", 999)], "node": []}),
-                     (g.adjacency_matrix, {"new": {"new": 999, "node": 999}, "node": {"new": 999, "node": 999}}),
+        test_list = [(g.node_dict, {"new": [], "node": []}),
+                     (g.adjacency_matrix, {"new": {"new": 999999, "node": 999998}, "node": {"new": 999999, "node": 999999}}),
                      (g.nb_nodes, 2),
                      (g.nb_edges, 1)]
         for g_element, expected_value in test_list:
@@ -74,8 +75,8 @@ class GraphTests(unittest.TestCase):
         g.add_node("node")
         g.add_edge("new", "node")
         g.add_edge("new", "node")
-        test_list = [(g.node_dict, {"new": [("new", "node", 999)], "node": []}),
-                     (g.adjacency_matrix, {"new": {"new": 999, "node": 999}, "node": {"new": 999, "node": 999}}),
+        test_list = [(g.node_dict, {"new": [], "node": []}),
+                     (g.adjacency_matrix, {"new": {"new": 999999, "node": 999998}, "node": {"new": 999999, "node": 999999}}),
                      (g.nb_nodes, 2),
                      (g.nb_edges, 1)]
         for g_element, expected_value in test_list:
@@ -89,10 +90,10 @@ class GraphTests(unittest.TestCase):
         g.add_node("test")
         g.add_edge("new", "node")
         g.add_edge("node", "test", 45)
-        test_list = [(g.node_dict, {"new": [("new", "node", 999)], "node": [("node", "test", 45)], "test": []}),
-                     (g.adjacency_matrix, {"new": {"new": 999, "node": 999, "test": 999},
-                               "node": {"new": 999, "node": 999, "test": 45},
-                               "test": {"new": 999, "node": 999, "test": 999}}),
+        test_list = [(g.node_dict, {"new": [], "node": [], "test": []}),
+                     (g.adjacency_matrix, {"new": {"new": 999999, "node": 999998, "test": 999999},
+                                           "node": {"new": 999999, "node": 999999, "test": 45},
+                                           "test": {"new": 999999, "node": 999999, "test": 999999}}),
                      (g.nb_nodes, 3),
                      (g.nb_edges, 2)]
         for g_element, expected_value in test_list:
@@ -219,7 +220,7 @@ class GraphTests(unittest.TestCase):
         g.add_edge("new", "node")
         g.add_edge("node", "test", 45)
         edges = g.edge_list()
-        self.assertEqual(edges, [("new", "node", 999), ("node", "test", 45)])
+        self.assertEqual(edges, [("new", "node", 999998), ("node", "test", 45)])
 
     def test_get_dist_matrix_empty_graph(self):
         g = Graph()
@@ -234,9 +235,9 @@ class GraphTests(unittest.TestCase):
         g.add_edge("new", "node")
         g.add_edge("node", "test", 45)
         mat = g.get_dist_matrix()
-        self.assertEqual(mat, {"new": {"new": 999, "node": 999, "test": 999},
-                               "node": {"new": 999, "node": 999, "test": 45},
-                               "test": {"new": 999, "node": 999, "test": 999}})
+        self.assertEqual(mat, {"new": {"new": 999999, "node": 999998, "test": 999999},
+                               "node": {"new": 999999, "node": 999999, "test": 45},
+                               "test": {"new": 999999, "node": 999999, "test": 999999}})
 
     def test_str(self):
         g = Graph()
@@ -256,9 +257,9 @@ class GraphTests(unittest.TestCase):
         sys.stdout = out
         print(g)
         self.assertEqual(out.getvalue(),
-                         "{'new': {'new': 999, 'node': 999, 'test': 999}, "
-                         "'node': {'node': 999, 'new': 999, 'test': 45}, "
-                         "'test': {'test': 999, 'new': 999, 'node': 999}}\n")
+                         "{'new': {'new': 999999, 'node': 999998, 'test': 999999}, "
+                         "'node': {'node': 999999, 'new': 999999, 'test': 45}, "
+                         "'test': {'test': 999999, 'new': 999999, 'node': 999999}}\n")
 
 
 if __name__ == '__main__':

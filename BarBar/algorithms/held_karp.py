@@ -137,7 +137,8 @@ def parallel_held_karp(g, start, processors=3):
         subsets = find_sublists(node_set, s)
         pool = Pool(processors)
         [pool.apply(path_dict_filler, args=(dist_matrix, path_dict, subset)) for subset in subsets]
-
+        pool.close()
+        pool.join()
     distance, path = min([(path_dict[(node_set, m)][0] + dist_matrix[m][start],
                            path_dict[(node_set, m)][1] + [start]) for m in node_set])
 

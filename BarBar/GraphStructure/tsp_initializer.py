@@ -66,10 +66,10 @@ def algo_for_combinations(graph, start, algorithm, bar_number, price, is_hk):
     min_dist = 9999
     min_path = []
     min_graph = Graph()
+    for i in range(len(edge_list)):
+        if edge_list[i][2] < 500:
+            remaining_bars.append(edge_list[i][1][1])
     if not is_hk:
-        for i in range(len(edge_list)):
-            if edge_list[i][2] * 1000 < 5:
-                remaining_bars.append(edge_list[i][1][1])
         bars = [edge_list[0][0][1]] + remaining_bars
         g = Graph()
         g.build_sub_graph(bars)
@@ -77,11 +77,8 @@ def algo_for_combinations(graph, start, algorithm, bar_number, price, is_hk):
         distance, path = algorithm(g, 0, int(bar_number), price)
         return distance, path, g
     else:
-        for i in range(len(edge_list)):
-            if edge_list[i][2] * 1000 < 5:
-                remaining_bars.append(edge_list[i][1][1])
-        combinations = find_combinations(tuple(remaining_bars), int(bar_number))
         print("Number of candidates: ", len(remaining_bars))
+        combinations = find_combinations(tuple(remaining_bars), int(bar_number))
         i = 0
         for combination in combinations:
             comb = [edge_list[0][0][1]] + list(combination)

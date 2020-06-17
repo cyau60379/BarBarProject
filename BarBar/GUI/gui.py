@@ -136,11 +136,21 @@ class BarBarGUI(Tk):
         menubar.add_cascade(label="Options", menu=option_menu)
 
         help_menu = Menu(menubar, tearoff=0)
-        help_menu.add_command(label="Help Index", )
-        help_menu.add_command(label="About...", )
+        help_menu.add_command(label="About...", command=self.about)
         menubar.add_cascade(label="Help", menu=help_menu)
 
         self.config(menu=menubar)
+
+    def about(self):
+        top = Toplevel(width=200, height=100)
+        top.title("About")
+        label = Label(top, text="BarBar v1.0", padx=30, pady=10)
+        description = Label(top, text="Bar Crawl optimization in Paris", padx=10, pady=10)
+        author = Label(top, text="Author: Cyril AUBOURG, Cédric BELLINI, Alexandre LEUNENS", padx=30, pady=10)
+        label.pack()
+        description.pack()
+        author.pack()
+        top.mainloop()
 
     def action(self, error_label, city_map, position_entry, nb_bar_entry, price_entry, result, load):
         try:
@@ -172,7 +182,6 @@ class BarBarGUI(Tk):
         img = ImageTk.PhotoImage(image)
         city_map.create_image(new_coords[0], new_coords[1], image=img, anchor=NW)
         city_map.image = img
-        print(pixel_coords)
         for i in range(len(pixel_coords) - 1):
             x1 = 10 * pixel_coords[i][0] + new_coords[0]
             y1 = 10 * pixel_coords[i][1] + new_coords[1]
@@ -222,7 +231,8 @@ class BarBarGUI(Tk):
         nb_bar_entry.pack(padx=10, pady=10)
 
         price_label = ChoiceLabel(control_panel, "Price", self.font_color, self.color)
-        price_entry = Entry(control_panel, width=21, bd=3, font=("Arial", 12))
+        values = (1.00, 1.50, 2.00, 2.50, 3.00, 3.50, 4.00, 4.50, 5.00, 5.50, 6.00, 6.50, 7.00, 7.50)
+        price_entry = Spinbox(control_panel, bd=3, font=("Arial", 12), values=values, wrap=True, state="readonly")
         price_label.pack()
         price_entry.pack(padx=10, pady=10)
 
