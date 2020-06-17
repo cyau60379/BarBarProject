@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c85c11ae-c7ef-4184-8da1-9e0666ffbea2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphStructure/Graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/Graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphStructure/tests/GraphTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/tests/GraphTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphStructure/tsp_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphStructure/tsp_initializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/christofides.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/christofides.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/grasp_sr.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/grasp_sr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/held_karp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/held_karp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,50 +63,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.gui">
-    <configuration name="GUI (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="BarBar" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GUI" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GUI/GUI.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="christofides" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="BarBar" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithms" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithms/christofides.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="grasp_sr" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BarBar" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,7 +107,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in GraphTests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for GraphTests.GraphTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="BarBar" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -169,17 +118,47 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/GraphStructure/tests/GraphTests.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;GraphTests.GraphTests&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for HeldKarpTests.HeldKarpTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="BarBar" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithms/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;HeldKarpTests.HeldKarpTests&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for HeldKarpTests.HeldKarpTests.test__recursive_held_karp" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="BarBar" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithms/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;HeldKarpTests.HeldKarpTests.test__recursive_held_karp&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.gui" />
+        <item itemvalue="Python tests.Unittests for HeldKarpTests.HeldKarpTests" />
+        <item itemvalue="Python tests.Unittests for GraphTests.GraphTests" />
+        <item itemvalue="Python tests.Unittests for HeldKarpTests.HeldKarpTests.test__recursive_held_karp" />
         <item itemvalue="Python.grasp_sr" />
-        <item itemvalue="Python tests.Unittests in GraphTests.py" />
-        <item itemvalue="Python.christofides" />
-        <item itemvalue="Python.GUI (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -209,7 +188,10 @@
       <workItem from="1592224522378" duration="9354000" />
       <workItem from="1592235284876" duration="3157000" />
       <workItem from="1592238635606" duration="6299000" />
-      <workItem from="1592296262196" duration="5950000" />
+      <workItem from="1592296262196" duration="6084000" />
+      <workItem from="1592316797822" duration="21812000" />
+      <workItem from="1592374411175" duration="2170000" />
+      <workItem from="1592377605540" duration="6993000" />
     </task>
     <servers />
   </component>
@@ -221,42 +203,46 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="522" y="220" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1591004529477" />
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592327207066">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1592327207066" />
     <state x="919" y="177" key="FileChooserDialogImpl" timestamp="1589275413248">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="919" y="177" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1589275413248" />
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1592302229297">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1592386647435">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592302229297" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1592302229297">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592386647435" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1592386647430">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1592302229297" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1592302229297">
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1592386647430" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1592386647430">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1592302229297" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1592302229297">
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1592386647430" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1592386647430">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1592302229297" />
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1592299847983">
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1592386647430" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1592346049034">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592299847983" />
-    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1592299847983">
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592346049034" />
+    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1592346049034">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1592299847983" />
-    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1592299847983">
+    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1592346049034" />
+    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1592346049034">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1592299847983" />
-    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1592299847983">
+    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1592346049034" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1592346049034">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1592299847983" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1592346049034" />
     <state x="277" y="59" key="SettingsEditor" timestamp="1592059602635">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -265,18 +251,18 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.834@0.0.1536.834" timestamp="1591012438936" />
-    <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1592139584940">
+    <state width="1203" height="424" key="XDebugger.FullValuePopup" timestamp="1592328219962">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="775" height="424" key="XDebugger.FullValuePopup/0.0.1536.834@0.0.1536.834" timestamp="1592139584940" />
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1592296260793">
+    <state width="1203" height="424" key="XDebugger.FullValuePopup/0.0.1536.834@0.0.1536.834" timestamp="1592328219962" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1592377611025">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1592296260793" />
-    <state x="442" y="150" width="611" height="536" key="find.popup" timestamp="1592297618017">
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1592377611025" />
+    <state x="442" y="150" width="611" height="536" key="find.popup" timestamp="1592375305437">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="442" y="150" width="611" height="536" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1592297618017" />
+    <state x="442" y="150" width="611" height="536" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1592375305437" />
     <state x="510" y="60" key="refactoring.ChangeSignatureDialog" timestamp="1592143326403">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -286,9 +272,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/algorithms/grasp_sr.py</url>
-          <line>94</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/algorithms/held_karp.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -304,14 +290,16 @@
     <SUITE FILE_PATH="coverage/BarBar$dnd.coverage" NAME="dnd Coverage Results" MODIFIED="1591114551902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/tkinter" />
     <SUITE FILE_PATH="coverage/BarBar$christofides.coverage" NAME="christofides Coverage Results" MODIFIED="1592297079722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms" />
     <SUITE FILE_PATH="coverage/BarBar$Unittests_for_HKTests_HeldKarpTests_test_dynamic_held_karp.coverage" NAME="Unittests for HKTests.HeldKarpTests.test_dynamic_held_karp Coverage Results" MODIFIED="1592148913993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms/tests" />
-    <SUITE FILE_PATH="coverage/BarBar$gui.coverage" NAME="gui Coverage Results" MODIFIED="1592302229281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GUI" />
+    <SUITE FILE_PATH="coverage/BarBar$gui.coverage" NAME="gui Coverage Results" MODIFIED="1592386346000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GUI" />
     <SUITE FILE_PATH="coverage/BarBar$Unittests_for_HKTests_HeldKarpTests_test_held_karp.coverage" NAME="Unittests for HKTests.HeldKarpTests.test_held_karp Coverage Results" MODIFIED="1592139548134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms/tests" />
     <SUITE FILE_PATH="coverage/BarBar$Unittests_in_HKTests_py.coverage" NAME="Unittests in HKTests.py Coverage Results" MODIFIED="1591991413485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BarBar$Unittests_for_HKTests_HeldKarpTests_test_dynamic_held_karp_without_solution.coverage" NAME="Unittests for HKTests.HeldKarpTests.test_dynamic_held_karp_without_solution Coverage Results" MODIFIED="1592048659267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BarBar$Unittests_for_HKTests_HeldKarpTests.coverage" NAME="Unittests for HKTests.HeldKarpTests Coverage Results" MODIFIED="1592225059072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms/tests" />
     <SUITE FILE_PATH="coverage/BarBar$grasp_sr.coverage" NAME="grasp_sr Coverage Results" MODIFIED="1592299935256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms" />
     <SUITE FILE_PATH="coverage/BarBar$Unittests_for_GraphTests_GraphTests_test_str.coverage" NAME="Unittests for GraphTests.GraphTests.test_str Coverage Results" MODIFIED="1591301468063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BarBar$Unittests_for_GraphTests_GraphTests.coverage" NAME="Unittests for GraphTests.GraphTests Coverage Results" MODIFIED="1592052139401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BarBar$Unittests_for_HeldKarpTests_HeldKarpTests.coverage" NAME="Unittests for HeldKarpTests.HeldKarpTests Coverage Results" MODIFIED="1592375992530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms/tests" />
+    <SUITE FILE_PATH="coverage/BarBar$Unittests_for_HeldKarpTests_HeldKarpTests_test__recursive_held_karp.coverage" NAME="Unittests for HeldKarpTests.HeldKarpTests.test__recursive_held_karp Coverage Results" MODIFIED="1592328202243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms/tests" />
+    <SUITE FILE_PATH="coverage/BarBar$Unittests_for_GraphTests_GraphTests.coverage" NAME="Unittests for GraphTests.GraphTests Coverage Results" MODIFIED="1592375880178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GraphStructure/tests" />
     <SUITE FILE_PATH="coverage/BarBar$held_karp.coverage" NAME="held_karp Coverage Results" MODIFIED="1589216634393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BarBar$APILink.coverage" NAME="APILink Coverage Results" MODIFIED="1592058744890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
